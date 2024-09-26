@@ -29,8 +29,8 @@ email_replacement = '[REDACTED-EMAIL]'
 phone_replacement = '[REDACTED-PHONE]'
 
 # Sensitive data replacement strings
-password_replacement = r'\1: [REDACTED-PASSWORD]'
-username_replacement = r'\1: [REDACTED-USERNAME]'
+password_replacement = '[REDACTED-PASSWORD]'
+username_replacement = '[REDACTED-USERNAME]'
 ssn_replacement = '[REDACTED-SSN]'
 credit_card_replacement = '[REDACTED-CREDIT-CARD]'
 
@@ -67,34 +67,71 @@ def process_csv(file_path):
     output = "\n".join([",".join(row) for row in result])
     return output
 
-# Function to handle JSON files
+# Function to handle JSON files (traverse the structure to redact sensitive data)
 def process_json(file_path):
     def traverse_and_replace(data):
         if isinstance(data, dict):
-            return {key: traverse_and_replace(value) for key, value in data.items()}
+            # Redact values if the key matches sensitive information
+            return {key: traverse_and_replace(value) if key not in ['username', 'password', 'email', 'phone', 'ssn', 'credit_card'] 
+                    else redact_key_value(key) for key, value in data.items()}
         elif isinstance(data, list):
             return [traverse_and_replace(item) for item in data]
         elif isinstance(data, str):
             return replace_patterns(data)
         else:
             return data
-    
+
+    def redact_key_value(key):
+        # Redact based on the key (sensitive fields)
+        if key == 'username':
+            return '[REDACTED-USERNAME]'
+        elif key == 'password':
+            return '[REDACTED-PASSWORD]'
+        elif key == 'email':
+            return '[REDACTED-EMAIL]'
+        elif key == 'phone':
+            return '[REDACTED-PHONE]'
+        elif key == 'ssn':
+            return '[REDACTED-SSN]'
+        elif key == 'credit_card':
+            return '[REDACTED-CREDIT-CARD]'
+        return '[REDACTED]'
+
     with open(file_path, 'r', encoding='utf-8') as jsonfile:
         data = json.load(jsonfile)
         processed_data = traverse_and_replace(data)
 
     return json.dumps(processed_data, indent=4)
 
-# Function to handle XML files
+# Function to handle XML files (traverse elements and redact sensitive data)
 def process_xml(file_path):
     tree = ET.parse(file_path)
     root = tree.getroot()
 
     def traverse_xml(element):
-        if element.text:
+        if element.tag in ['username', 'password', 'email', 'phone', 'ssn', 'credit_card']:
+            # Redact based on the element tag
+            element.text = redact_key_value(element.tag)
+        elif element.text:
             element.text = replace_patterns(element.text)
         for child in element:
             traverse_xml(child)
+
+    def redact_key_value(tag):
+        # Redact based on the XML tag
+        if tag == 'username':
+            return '[REDACTED-USERNAME]'
+        elif tag == 'password':
+            return '[REDACTED-PASSWORD]'
+        elif tag == 'email':
+            return '[REDACTED-EMAIL]'
+        elif tag == 'phone':
+            return '[REDACTED-PHONE]'
+        elif tag == 'ssn':
+            return '[REDACTED-SSN]'
+        elif tag == 'credit_card':
+            return '[REDACTED-CREDIT-CARD]'
+        return '[REDACTED]'
 
     traverse_xml(root)
     return ET.tostring(root, encoding='unicode')
