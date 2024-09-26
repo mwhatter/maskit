@@ -2,13 +2,13 @@
 
 ## Overview
 
-**MaskIt** is a Python tool designed to help you redact sensitive information from text files. It automatically identifies and replaces sensitive data like IP addresses, file paths, URLs, email addresses, and more with descriptive placeholders, ensuring privacy and security.
+**MaskIt** is a Python tool designed to help you redact sensitive information from various file types, including plain text, CSV, JSON, and XML files. It automatically identifies and replaces sensitive data such as IP addresses, file paths, URLs, email addresses, and more with descriptive placeholders, ensuring privacy and security.
 
 ### Features
 
 - **Easy File Selection via GUI**: MaskIt provides a user-friendly interface for browsing and selecting files to be processed.
 - **Automated Redaction**: Replaces sensitive information with placeholders (e.g., `[REDACTED-EMAIL]`, `[REDACTED-PHONE]`).
-- **Multiple Data Formats Supported**: Handles various data types, including IP addresses, file paths, emails, and more.
+- **Supports Multiple File Formats**: Handles plain text (`.txt`), CSV (`.csv`), JSON (`.json`), and XML (`.xml`) file types.
 
 ### Redactions
 
@@ -39,7 +39,7 @@ MaskIt replaces the following data points:
 1. Clone the repository:
 
     ```bash
-    git clone https://github.com/yourusername/maskit.git
+    git clone https://github.com/mwhatter/maskit.git
     cd maskit
     ```
 
@@ -65,7 +65,17 @@ MaskIt replaces the following data points:
 
 4. You will be prompted to choose a location to save the redacted file.
 
+### Supported File Formats
+
+| File Type | Description                                        |
+|-----------|----------------------------------------------------|
+| `.txt`    | Plain text files are scanned line by line for sensitive information. |
+| `.csv`    | CSV files are processed row by row, and each cell is scanned for sensitive data. |
+| `.json`   | JSON files are traversed, and all string values are sanitized.        |
+| `.xml`    | XML files are parsed, and text nodes within elements are sanitized.   |
+
 ### Example
+
 
 For the input file:
 
