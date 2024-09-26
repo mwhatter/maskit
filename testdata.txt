@@ -1,0 +1,26 @@
+Here are some test IP addresses:
+192.168.1.1 is a common private IP address.
+10.0.0.5 and 172.16.0.10 are also private network IPs.
+Public IPs could be something like 8.8.8.8 (Google DNS) or 203.0.113.42.
+
+Here are some test file paths:
+C:\Users\JohnDoe\Documents\testfile.txt is a Windows file path.
+D:\Work\Project\report.docx could be another file.
+Unix-based file paths might look like /home/user/docs/example.pdf or /var/log/system.log.
+
+Here are some test URLs:
+https://example.com is a basic URL.
+http://subdomain.example.com:8080/directory?query=param&another=value is a more complex URL.
+ftp://files.example.org/download.zip is an FTP link.
+https://192.168.0.100:8443/admin is a URL with an IP address.
+
+Here are some test usernames and passwords:
+username: johndoe, password: MySecurePassword123
+User: admin, Pass: secret123
+
+Social Security Number (SSN): 123-45-6789
+Credit Card: 4111 1111 1111 1111
+Phone numbers: (123) 456-7890, 123-456-7890, +1 123 456 7890
+Email addresses: johndoe@example.com, jane_doe123@domain.co.uk
+
+End of test data.
