@@ -70,7 +70,7 @@ MaskIt replaces the following data points:
 | File Type | Description                                        |
 |-----------|----------------------------------------------------|
 | `.txt`    | Plain text files are scanned line by line for sensitive information. |
-| `.csv`    | CSV files are processed row by row, and each cell is scanned for sensitive data. -this format produces the least consistent results.|
+| `.csv`    | CSV files are processed row by row, and each cell is scanned for sensitive data. This format produces the least consistent results.|
 | `.json`   | JSON files are traversed, and all string values are sanitized.        |
 | `.xml`    | XML files are parsed, and text nodes within elements are sanitized.   |
 
