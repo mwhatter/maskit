@@ -1,0 +1,19 @@
+{
+    "user": {
+      "username": "johndoe",
+      "password": "MySecretPassword123",
+      "email": "johndoe@example.com",
+      "phone": "(123) 456-7890",
+      "ssn": "123-45-6789",
+      "credit_card": "4111 1111 1111 1111"
+    },
+    "network": {
+      "ip_addresses": ["192.168.1.1", "8.8.8.8"],
+      "urls": ["https://example.com", "ftp://192.168.1.1:8080/directory"]
+    },
+    "files": {
+      "windows_path": "C:\\Users\\JohnDoe\\Documents\\file.txt",
+      "unix_path": "/home/johndoe/docs/example.txt"
+    }
+  }
+  
